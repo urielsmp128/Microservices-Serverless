@@ -5,9 +5,10 @@ from flask import json
 from werkzeug.exceptions import HTTPException
 from flask import send_from_directory
 
-PORT = 5000
+PORT = 3000
 
 myApp = Flask(__name__)
+CORS(myApp, resources={r'/*': {'origins': '*'}})
 
 tasks = [{"name":"Laundry","description":"Do the laundry this weekend"},
             {"name":"Assignment","description":"Finish assignment by Friday"},
@@ -71,5 +72,4 @@ def handle_exception(e):
   return response
 
 if __name__ == '__main__':
-  CORS = CORS(myApp)
   myApp.run(port=PORT, debug=False)
